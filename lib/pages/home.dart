@@ -18,8 +18,9 @@ class _HomePageState extends State<HomePage> {
     {'name': '90s90s BoyGroup', 'country': 'Canada'},
     {'name': 'Classic Rock', 'country': 'USA'},
     {'name': 'Jazz Radio Blues', 'country': 'France'},
-    {'name': 'RDP Africa', 'country': 'Portugal'},
+    // {'name': 'RDP Africa', 'country': 'Portugal'},
   ];
+
   @override
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
@@ -46,12 +47,14 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Spacer(),
                       Container(
-                        width: 200,
+                        width: 300,
                         child: TextField(
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            hintText: 'Search Station...',
+                            hintText: 'Search Station',
+                            prefixIcon: Icon(Icons.search),
+                            contentPadding: EdgeInsets.zero,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none,
@@ -59,72 +62,51 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
-                      )
+                      SizedBox(width: 10),
                     ],
                   ),
                 ),
                 Container(
                   height: 350,
-                  child: Stack(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                        Colors.black26,
+                        BlendMode.multiply,
+                      ),
+                      image: AssetImage('assets/jazz.jpeg'),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/jazz.jpeg',
-                        height: 400,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 350,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            tileMode: TileMode.clamp,
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color.fromRGBO(208, 233, 238, 0),
-                              Color.fromRGBO(241, 238, 237, 1)
-                            ],
-                          ),
+                      Text(
+                        'Top Jazz stations',
+                        style: TextStyle(
+                          fontSize: 34,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Container(
-                        alignment: Alignment.bottomLeft,
-                        padding: EdgeInsets.all(30),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Top Jazz stations',
-                              style: _theme.textTheme.headline2.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            RaisedButton(
-                              onPressed: () {},
-                              child: Text(
-                                'VIEW STATIONS',
-                                style: _theme.textTheme.subtitle2.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: _theme.accentColor,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 30,
-                                vertical: 15,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+                      // SizedBox(height: 20),
+                      // RaisedButton(
+                      //   elevation: 0,
+                      //   onPressed: () {},
+                      //   color: _theme.accentColor,
+                      //   padding: EdgeInsets.all(22),
+                      //   child: Text(
+                      //     'VIEW STATIONS',
+                      //     style: TextStyle(
+                      //       fontSize: 13,
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      //   shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(50),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -146,42 +128,33 @@ class _HomePageState extends State<HomePage> {
 
   Card buildRadioCard(ThemeData _theme, Map radio) {
     return Card(
-      color: Colors.grey[300],
-      margin: EdgeInsets.all(8),
+      elevation: 0,
+      color: Colors.white,
+      margin: EdgeInsets.all(5),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
-      shadowColor: Color.fromRGBO(218, 208, 238, 1),
       child: InkWell(
+        borderRadius: BorderRadius.circular(8),
         onTap: () {},
         child: Container(
           width: 250,
           padding: EdgeInsets.all(15),
-          child: Row(
-            children: [
-              Container(
-                width: 50,
-                child: Icon(
-                  Icons.music_note,
-                  size: 40,
-                  color: _theme.accentColor,
-                ),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    radio['name'],
-                    maxLines: 1,
-                    style: _theme.textTheme.headline6,
-                  ),
-                  SizedBox(height: 10),
-                  Text(radio['country']),
-                ],
-              ))
-            ],
+          child: ListTile(
+            leading: Icon(
+              Icons.music_note,
+              size: 40,
+              color: _theme.accentColor,
+            ),
+            title: Text(
+              radio['name'],
+              maxLines: 1,
+              style: _theme.textTheme.headline6.copyWith(fontSize: 15),
+            ),
+            subtitle: Text(
+              radio['country'],
+              style: TextStyle(fontSize: 12),
+            ),
           ),
         ),
       ),

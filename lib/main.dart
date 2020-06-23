@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Loop Radio',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Colors.white,
           accentColor: Colors.deepPurple[400],
