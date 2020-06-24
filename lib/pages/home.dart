@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
       child: InkWell(
         onTap: () {},
         child: Container(
-          width: 250,
+          width: 270,
           padding: EdgeInsets.all(15),
           child: Row(
             children: [

@@ -46,7 +46,7 @@ class Menu extends StatelessWidget {
       },
       selectedIconTheme: IconThemeData(
         color: _theme.accentColor,
-        size: 30,
+        size: 25,
       ),
       selectedLabelTextStyle: _theme.textTheme.headline6.copyWith(
         color: _theme.accentColor,
